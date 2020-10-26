@@ -4,6 +4,8 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+const chalk = require("chalk");
+const log = console.log;
 
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
@@ -40,8 +42,6 @@ function getTeamInfo () {
 
     function managerInfo (){
 
-
-
         inquirer.prompt([
             {
                 type: "input",
@@ -49,12 +49,31 @@ function getTeamInfo () {
                 message: "What is your manager's name?",
                 validate: async (input) => {
                     if (input === ""){
-                        console.log( "\n  Please enter a manager name.");
+                        // log(chalk.red.bold( "\n    Please enter a manager name."));
+                        // log(chalk.magenta( "\n    Please enter a manager name."));
+                        log(chalk.magenta.bold( "\n    Please enter a manager name."));
+                        // log(chalk.bgBlack.magenta( "\n    Please enter a manager name."));
+                        // log(chalk.bgBlack.magenta.bold( "\n    Please enter a manager name."));
+                        // log(chalk.bgYellow.red.bold( "\n    Please enter a manager name."));
+                        // log(chalk.bgYellow.red( "\n    Please enter a manager name."));
                         return false
+                        
                     }
                     return true;
                 }
-              }
+            },
+            {
+                type: "input",
+                name: "mgrID",
+                message: "What is your manager's ID?",
+                validate: async (input) => {
+                    if (input !== ""){
+                        return true
+                    }
+                    log(chalk.magenta.bold("\n    Please enter a valid"));
+            }
+
+          }
         ]).then(answers => {
             console.log("answers: ", answers);
         });
