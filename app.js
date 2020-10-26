@@ -33,3 +33,37 @@ const render = require("./lib/htmlRenderer");
 // for further information. Be sure to test out each class and verify it generates an
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
+
+const devTeam = [] // Array to hold all the team members
+
+function getTeamInfo () {
+
+    function managerInfo (){
+
+
+
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "mgrName",
+                message: "What is your manager's name?",
+                validate: async (input) => {
+                    if (input === ""){
+                        console.log( "\n  Please enter a manager name.");
+                        return false
+                    }
+                    return true;
+                }
+              }
+        ]).then(answers => {
+            console.log("answers: ", answers);
+        });
+    };
+
+
+
+    managerInfo();
+
+};
+
+getTeamInfo();
