@@ -102,6 +102,12 @@ function getTeamInfo () {
             log(chalk.bgGreen.white.bold("       >> Manger was created. << \n   >> Continue creating your team. <<"));
             console.log("");
             
+            const manager = new Manager (answers.mgrName, answers.mgrId, answers.mgrEmail, answers.mgrOffice);
+            devTeam.push(manager);
+            console.log("devTeam");
+            console.log(devTeam);
+            console.log("devTeam");
+
             // Get the Team
             getTeam();
 
@@ -211,6 +217,12 @@ function getTeamInfo () {
             log(chalk.bgGreen.white.bold("       >> Engineer was created. << \n     >> Continue creating your team. <<"));
             console.log("");
             
+            const engineer = new Engineer (answers.engrName, answers.engrId, answers.engrEmail, answers.engrGitHub);
+            devTeam.push(engineer);
+            console.log("devTeam");
+            console.log(devTeam);
+            console.log("devTeam");
+
             // Get the Team
             getTeam();
 
@@ -278,6 +290,14 @@ function getTeamInfo () {
             log(chalk.bgGreen.white.bold("       >> Engineer was created. << \n     >> Continue creating your team. <<"));
             console.log("");
             
+
+            const intern = new Intern (answers.intrName, answers.intrId, answers.intrEmail, answers.intrSchool);
+            devTeam.push(intern);
+            console.log("devTeam");
+            console.log(devTeam);
+            console.log("devTeam");
+
+
             // Get the Team
             getTeam();
 
