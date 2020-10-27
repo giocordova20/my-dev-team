@@ -40,7 +40,7 @@ const devTeam = [] // Array to hold all the team members
 
 function getTeamInfo () {
 
-    // Start with getting the Manger information then prompt user for the rest of the team.
+    //// Start with getting the Manger information then prompt user for the rest of the team. \\\\
     function managerInfo (){
 
         inquirer.prompt([
@@ -102,11 +102,8 @@ function getTeamInfo () {
             log(chalk.bgGreen.white.bold("       >> Manger was created. << \n   >> Continue creating your team. <<"));
             console.log("");
             
-            const manager = new Manager (answers.mgrName, answers.mgrId, answers.mgrEmail, answers.mgrOffice);
+            const manager = new Manager (answers.mgrName, answers.mgrID, answers.mgrEmail, answers.mgrOffice);
             devTeam.push(manager);
-            console.log("devTeam");
-            console.log(devTeam);
-            console.log("devTeam");
 
             // Get the Team
             getTeam();
@@ -116,14 +113,14 @@ function getTeamInfo () {
 
     };
 
-
+    //// Provide selection to add Engineer, add Inter, or complete the team
     function getTeam (){
         inquirer.prompt([
             {
                 type: "list",
                 name: "teamMember",
                 message: chalk.bgBlue.white("Which team member would you like to add?"),
-                choices: ["Engineer", "Intern", "Team Build Finished"],
+                choices: ["Engineer", "Intern", "Team Completed"],
             }
         ]).then(answers => {
             console.log("");
@@ -132,19 +129,13 @@ function getTeamInfo () {
 
             switch (answers.teamMember){
                 case "Engineer":
-                    log(chalk.white("    Engineer has been choosen"))
                     engineerInfo()
-
                     break;
                 case "Intern":
-                    log(chalk.white("    Intern has been choosen"))
                     internInfo()
-
                     break;
-                case "Team Build Finished":
-                    log(chalk.white("    Team build is complete"))
-                    // teamComplete()
-
+                case "Team Completed":
+                    teamCompleted()
                     break;
 
             };
@@ -156,8 +147,8 @@ function getTeamInfo () {
 
     };
 
-
-    function engineerInfo (){
+    //// Get Engineer Information \\\\
+    function engineerInfo () {
 
         inquirer.prompt([
             {
@@ -217,11 +208,8 @@ function getTeamInfo () {
             log(chalk.bgGreen.white.bold("       >> Engineer was created. << \n     >> Continue creating your team. <<"));
             console.log("");
             
-            const engineer = new Engineer (answers.engrName, answers.engrId, answers.engrEmail, answers.engrGitHub);
+            const engineer = new Engineer (answers.engrName, answers.engrID, answers.engrEmail, answers.engrGitHub);
             devTeam.push(engineer);
-            console.log("devTeam");
-            console.log(devTeam);
-            console.log("devTeam");
 
             // Get the Team
             getTeam();
@@ -230,8 +218,9 @@ function getTeamInfo () {
 
 
         };
-
-    function internInfo (){
+    
+    //// Get Intern Information \\\\
+    function internInfo () {
         inquirer.prompt([
             {
                 type: "input",
@@ -291,11 +280,8 @@ function getTeamInfo () {
             console.log("");
             
 
-            const intern = new Intern (answers.intrName, answers.intrId, answers.intrEmail, answers.intrSchool);
+            const intern = new Intern (answers.intrName, answers.intrID, answers.intrEmail, answers.intrSchool);
             devTeam.push(intern);
-            console.log("devTeam");
-            console.log(devTeam);
-            console.log("devTeam");
 
 
             // Get the Team
@@ -306,7 +292,20 @@ function getTeamInfo () {
 
         };
 
+    function teamCompleted () {
 
+        console.log("devTeam");
+        console.log(devTeam);
+        console.log("devTeam");
+
+        if(!fs.existsSync(OUTPUT_DIR)){
+            fs.mkdirSync(OUTPUT_DIR);
+        }
+        fs.writeFileSync(outputPath, render(devTeam), (err) => {
+            if (err) throw err;
+            log(chalk.bgGreen.white("File was created"))
+        });
+    };
 
 
 
