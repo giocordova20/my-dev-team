@@ -47,7 +47,7 @@ function getTeamInfo () {
                 type: "input",
                 name: "mgrName",
                 message: chalk.bgBlue.white("What is your manager's name?"),
-                validate: async (input) => {
+                validate: input => {
                     if (input === ""){
                         log(chalk.magenta.bold( "\n    >> Please enter a manager name."));
                         return false                        
@@ -59,22 +59,46 @@ function getTeamInfo () {
                 type: "input",
                 name: "mgrID",
                 message: chalk.bgBlue.white("What is your manager's ID Number?"),
-                validate: async (input) => {
+                validate: input => {
                     if (input === ""){
                     // if (input === "" || parseInt(input)=== false){
                         log(chalk.magenta.bold("\n    >> Please enter a valid ID Number"));
                         return false
                     } 
                     return true
-
-
+                }
+            },
+            {
+                type: "input",
+                name: "mgrEmail",
+                message: chalk.bgBlue.white("What is your manager's email address?"),
+                validate: input => {
+                    if (input === ""){
+                    // if (input === "" || parseInt(input)=== false){
+                        log(chalk.magenta.bold("\n    >> Please enter a valid email address"));
+                        return false
+                    } 
+                    return true
+                }
+            },
+            {
+                type: "input",
+                name: "mgrOffice",
+                message: chalk.bgBlue.white("What is your manager's Office Number?"),
+                validate: input => {
+                    if (input === ""){
+                    // if (input === "" || parseInt(input)=== false){
+                        log(chalk.magenta.bold("\n    >> Please enter a valid Office Number"));
+                        return false
+                    } 
+                    return true
+                }
             }
-
-          }
+        
         ]).then(answers => {
             console.log("");
             console.log("answers: ", answers);
-            console.log("answers.mgrID: ", answers.mgrID);
+            console.log("");
         });
     };
 
