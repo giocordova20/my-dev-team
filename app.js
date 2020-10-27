@@ -99,11 +99,12 @@ function getTeamInfo () {
         ]).then(answers => {
             console.log("");
             console.log("answers: ", answers);
+            log(chalk.bgGreen.white.bold("       >> Manger has been created. << \n     >> Continue creating your team. <<"));
             console.log("");
             
             // Get the Team
             getTeam();
-            
+
         });
 
 
@@ -117,18 +118,29 @@ function getTeamInfo () {
                 name: "teamMember",
                 message: chalk.bgBlue.white("Which team member would you like to add?"),
                 choices: ["Engineer", "Intern", "Team Build Finished"],
-                validate: input => {
-                    if (input === ""){
-                        log(chalk.magenta.bold( "\n    >> Please enter a manager name."));
-                        return false                        
-                    }
-                    return true;
-                }
             }
         ]).then(answers => {
             console.log("");
             console.log("answers: ", answers);
             console.log("");
+
+            switch (answers.teamMember){
+                case "Engineer":
+                    log(chalk.white("    Engineer has been choosen"))
+                    break;
+                case "Intern":
+                    log(chalk.white("    Intern has been choosen"))
+
+                    break;
+                case "Team Build Finished":
+                    log(chalk.white("    Team build is complete"))
+
+                    break;
+
+            }
+
+
+
         });
 
 
