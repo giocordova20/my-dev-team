@@ -132,7 +132,7 @@ function getTeamInfo () {
                     break;
                 case "Intern":
                     log(chalk.white("    Intern has been choosen"))
-                    // internInfo()
+                    internInfo()
 
                     break;
                 case "Team Build Finished":
@@ -153,73 +153,138 @@ function getTeamInfo () {
 
     function engineerInfo (){
 
-            inquirer.prompt([
-                {
-                    type: "input",
-                    name: "engrName",
-                    message: chalk.bgBlue.white("What is your engineer's name?"),
-                    validate: input => {
-                        if (input === ""){
-                            log(chalk.magenta.bold( "\n    >> Please enter the engineer name."));
-                            return false                        
-                        }
-                        return true;
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "engrName",
+                message: chalk.bgBlue.white("What is your engineer's name?"),
+                validate: input => {
+                    if (input === ""){
+                        log(chalk.magenta.bold( "\n    >> Please enter the engineer name."));
+                        return false                        
                     }
-                },
-                {
-                    type: "input",
-                    name: "engrID",
-                    message: chalk.bgBlue.white("What is the egineer's ID Number?"),
-                    validate: input => {
-                        if (input === ""){
-                        // if (input === "" || parseInt(input)=== false){
-                            log(chalk.magenta.bold("\n    >> Please enter a valid ID Number"));
-                            return false
-                        } 
-                        return true
-                    }
-                },
-                {
-                    type: "input",
-                    name: "engrEmail",
-                    message: chalk.bgBlue.white("What is your engineer's email address?"),
-                    validate: input => {
-                        if (input === ""){
-                        // if (input === "" || parseInt(input)=== false){
-                            log(chalk.magenta.bold("\n    >> Please enter a valid email address"));
-                            return false
-                        } 
-                        return true
-                    }
-                },
-                {
-                    type: "input",
-                    name: "engrGitHub",
-                    message: chalk.bgBlue.white("What is the engineers GitHub username?"),
-                    validate: input => {
-                        if (input === ""){
-                            log(chalk.magenta.bold("\n    >> Please enter a valid GitHub username Number"));
-                            return false
-                        } 
-                        return true
-                    }
+                    return true;
                 }
+            },
+            {
+                type: "input",
+                name: "engrID",
+                message: chalk.bgBlue.white("What is the egineer's ID Number?"),
+                validate: input => {
+                    if (input === ""){
+                    // if (input === "" || parseInt(input)=== false){
+                        log(chalk.magenta.bold("\n    >> Please enter a valid ID Number"));
+                        return false
+                    } 
+                    return true
+                }
+            },
+            {
+                type: "input",
+                name: "engrEmail",
+                message: chalk.bgBlue.white("What is your engineer's email address?"),
+                validate: input => {
+                    if (input === ""){
+                    // if (input === "" || parseInt(input)=== false){
+                        log(chalk.magenta.bold("\n    >> Please enter a valid email address"));
+                        return false
+                    } 
+                    return true
+                }
+            },
+            {
+                type: "input",
+                name: "engrGitHub",
+                message: chalk.bgBlue.white("What is the engineer's GitHub username?"),
+                validate: input => {
+                    if (input === ""){
+                        log(chalk.magenta.bold("\n    >> Please enter a valid GitHub username Number"));
+                        return false
+                    } 
+                    return true
+                }
+            }
+        
+        ]).then(answers => {
+            console.log("");
+            console.log("answers: ", answers);
+            log(chalk.bgGreen.white.bold("       >> Engineer was created. << \n     >> Continue creating your team. <<"));
+            console.log("");
             
-            ]).then(answers => {
-                console.log("");
-                console.log("answers: ", answers);
-                log(chalk.bgGreen.white.bold("       >> Engineer was created. << \n     >> Continue creating your team. <<"));
-                console.log("");
-                
-                // Get the Team
-                getTeam();
+            // Get the Team
+            getTeam();
 
-            });
+        });
 
 
         };
 
+    function internInfo (){
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "intrName",
+                message: chalk.bgBlue.white("What is your intern's name?"),
+                validate: input => {
+                    if (input === ""){
+                        log(chalk.magenta.bold( "\n    >> Please enter the intern name."));
+                        return false                        
+                    }
+                    return true;
+                }
+            },
+            {
+                type: "input",
+                name: "intrID",
+                message: chalk.bgBlue.white("What is the intern's ID Number?"),
+                validate: input => {
+                    if (input === ""){
+                    // if (input === "" || parseInt(input)=== false){
+                        log(chalk.magenta.bold("\n    >> Please enter a valid ID Number"));
+                        return false
+                    } 
+                    return true
+                }
+            },
+            {
+                type: "input",
+                name: "intrEmail",
+                message: chalk.bgBlue.white("What is your intern's email address?"),
+                validate: input => {
+                    if (input === ""){
+                    // if (input === "" || parseInt(input)=== false){
+                        log(chalk.magenta.bold("\n    >> Please enter a valid email address"));
+                        return false
+                    } 
+                    return true
+                }
+            },
+            {
+                type: "input",
+                name: "intrSchool",
+                message: chalk.bgBlue.white("What is the intern's school?"),
+                validate: input => {
+                    if (input === ""){
+                        log(chalk.magenta.bold("\n    >> Please enter a valid school"));
+                        return false
+                    } 
+                    return true
+                }
+            }
+        
+        ]).then(answers => {
+            console.log("");
+            console.log("answers: ", answers);
+            log(chalk.bgGreen.white.bold("       >> Engineer was created. << \n     >> Continue creating your team. <<"));
+            console.log("");
+            
+            // Get the Team
+            getTeam();
 
+        });
+
+
+        };
 
 
 
