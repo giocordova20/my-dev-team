@@ -40,6 +40,7 @@ const devTeam = [] // Array to hold all the team members
 
 function getTeamInfo () {
 
+    // Start with getting the Manger information then prompt user for the rest of the team.
     function managerInfo (){
 
         inquirer.prompt([
@@ -99,8 +100,59 @@ function getTeamInfo () {
             console.log("");
             console.log("answers: ", answers);
             console.log("");
+            
+            // Get the Team
+            getTeam();
+            
         });
+
+
     };
+
+
+    function getTeam (){
+        inquirer.prompt([
+            {
+                type: "list",
+                name: "teamMember",
+                message: chalk.bgBlue.white("Which team member would you like to add?"),
+                choices: ["Engineer", "Intern", "Team Build Finished"],
+                validate: input => {
+                    if (input === ""){
+                        log(chalk.magenta.bold( "\n    >> Please enter a manager name."));
+                        return false                        
+                    }
+                    return true;
+                }
+            }
+        ]).then(answers => {
+            console.log("");
+            console.log("answers: ", answers);
+            console.log("");
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+    };
+
+
+
+
+
+
+
+
+
 
 
 
