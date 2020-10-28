@@ -36,7 +36,8 @@ const render = require("./lib/htmlRenderer");
 // object with the correct structure and methods. This structure will be crucial in order
 // for the provided `render` function to work! ```
 
-const devTeam = [] // Array to hold all the team members
+const devTeam = []  // Array to hold all the team members
+const ids = []       // Array to hold IDs to maker sure they are not duplicated
 
 function getTeamInfo () {
 
@@ -50,8 +51,7 @@ function getTeamInfo () {
                 message: chalk.bgBlue.white("What is your manager's name?"),
                 validate: input => {
                     if (input === ""){
-                        log(chalk.magenta.bold( "\n    >> Please enter a manager name."));
-                        return false                        
+                        return log(chalk.magenta.bold( "\n    >> Please enter a manager name."));
                     }
                     return true;
                 }
@@ -62,10 +62,9 @@ function getTeamInfo () {
                 message: chalk.bgBlue.white("What is your manager's ID Number?"),
                 validate: input => {
                     if (input === ""){
-                    // if (input === "" || parseInt(input)=== false){
-                        log(chalk.magenta.bold("\n    >> Please enter a valid ID Number"));
-                        return false
-                    } 
+                        return log(chalk.magenta.bold("\n    >> Please enter a valid ID Number"));
+                    }
+                    ids.push(input);
                     return true
                 }
             },
@@ -75,9 +74,7 @@ function getTeamInfo () {
                 message: chalk.bgBlue.white("What is your manager's email address?"),
                 validate: input => {
                     if (input === ""){
-                    // if (input === "" || parseInt(input)=== false){
-                        log(chalk.magenta.bold("\n    >> Please enter a valid email address"));
-                        return false
+                        return log(chalk.magenta.bold("\n    >> Please enter a valid email address"));
                     } 
                     return true
                 }
@@ -88,7 +85,6 @@ function getTeamInfo () {
                 message: chalk.bgBlue.white("What is your manager's Office Number?"),
                 validate: input => {
                     if (input === ""){
-                    // if (input === "" || parseInt(input)=== false){
                         log(chalk.magenta.bold("\n    >> Please enter a valid Office Number"));
                         return false
                     } 
@@ -157,8 +153,7 @@ function getTeamInfo () {
                 message: chalk.bgBlue.white("What is your engineer's name?"),
                 validate: input => {
                     if (input === ""){
-                        log(chalk.magenta.bold( "\n    >> Please enter the engineer name."));
-                        return false                        
+                        return log(chalk.magenta.bold( "\n    >> Please enter the engineer name."));
                     }
                     return true;
                 }
@@ -169,10 +164,12 @@ function getTeamInfo () {
                 message: chalk.bgBlue.white("What is the egineer's ID Number?"),
                 validate: input => {
                     if (input === ""){
-                    // if (input === "" || parseInt(input)=== false){
-                        log(chalk.magenta.bold("\n    >> Please enter a valid ID Number"));
-                        return false
-                    } 
+                        return log(chalk.magenta.bold("\n    >> Please enter a valid ID Number"));
+                    } else if (ids.includes(input)){
+                        return log(chalk.magenta.bold("\n    >> This ID has been used. Enter a different ID."));
+
+                    }
+                    ids.push(input);
                     return true
                 }
             },
@@ -182,7 +179,6 @@ function getTeamInfo () {
                 message: chalk.bgBlue.white("What is your engineer's email address?"),
                 validate: input => {
                     if (input === ""){
-                    // if (input === "" || parseInt(input)=== false){
                         log(chalk.magenta.bold("\n    >> Please enter a valid email address"));
                         return false
                     } 
@@ -240,10 +236,11 @@ function getTeamInfo () {
                 message: chalk.bgBlue.white("What is the intern's ID Number?"),
                 validate: input => {
                     if (input === ""){
-                    // if (input === "" || parseInt(input)=== false){
-                        log(chalk.magenta.bold("\n    >> Please enter a valid ID Number"));
-                        return false
-                    } 
+                        return log(chalk.magenta.bold("\n    >> Please enter a valid ID Number"));
+                    } else if (ids.includes(input)){
+                        return log(chalk.magenta.bold("\n    >> This ID has been used. Enter a different ID."));
+                    }
+                    ids.push(input);
                     return true
                 }
             },
